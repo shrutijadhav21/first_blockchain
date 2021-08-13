@@ -3,11 +3,18 @@ import React from 'react'
 import { login, logout } from './utils'
 import './global.css'
 import "bootstrap/dist/css/bootstrap.min.css";
-7
+
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+// components
+import Home from "./Components/Home";
+import NewPoll from "./Components/NewPoll";
+import PollingStation from "./Components/PollingStation";
 
+
+// images
+import BlockVoteLogo from "./assets/blockvotelogo.svg";
 
 import getConfig from './config'
 const { networkId } = getConfig(process.env.NODE_ENV || 'development')
@@ -18,7 +25,9 @@ return (
 <Router>
 <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 <Container>
-<Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+<Navbar.Brand href='/'>
+            <img src={BlockVoteLogo}></img>
+          </Navbar.Brand>
 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
 <Navbar.Collapse id="responsive-navbar-nav">
   <Nav className="mx-auto">
@@ -33,6 +42,17 @@ return (
 </Navbar.Collapse>
 </Container>
 </Navbar>
+<Switch>
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <Route exact path='/PollingStation'>
+          <PollingStation />
+        </Route>
+        <Route exact path='/NewPoll'>
+          <NewPoll />
+        </Route>
+      </Switch>
 </Router>
 );
 }
